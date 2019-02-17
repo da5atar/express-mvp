@@ -7,4 +7,7 @@ let landing = require('../controllers/landing');
 // TODO 2: landing page route handler
 router.get('/', landing.get_landing);
 
+// TODO 5: Develop first POST route for leads submissions
+router.post('/', landing.submit_lead);
+
 module.exports = router;
