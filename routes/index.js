@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-let index = require('../controllers/index');
+let landing = require('../controllers/landing');
 
 /* GET home page. */
-// TODO 1: Separate the route handler logic
-router.get('/', index.index);
+// TODO 2: landing page route handler
+router.get('/', landing.get_landing);
 
 module.exports = router;
