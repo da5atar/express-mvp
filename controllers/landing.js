@@ -14,6 +14,17 @@ exports.submit_lead = function (req, res, next) {
   return models.Lead.create({
     email: req.body.lead_email
   }).then(lead => {
-    res.redirect('/');
+    res.redirect('/leads');
   })
+}
+
+// CRUD: listing of leads controller
+exports.show_leads = function (req, res, next) {
+  // fetch leads from DB
+  models.Lead.findAll().then(leads => {
+    res.render('landing', {
+      title: 'Express',
+      leads: leads // returned leads object from promise
+    });
+  });
 }
