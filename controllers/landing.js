@@ -15,16 +15,30 @@ exports.submit_lead = function (req, res, next) {
     email: req.body.lead_email
   }).then(lead => {
     res.redirect('/leads');
-  })
+  });
 }
 
-// CRUD: listing of leads controller
+// CRUD: listing of leads (controller)
 exports.show_leads = function (req, res, next) {
   // fetch leads from DB
-  models.Lead.findAll().then(leads => {
+  return models.Lead.findAll().then(leads => {
     res.render('landing', {
       title: 'Express',
       leads: leads // returned leads object from promise
+    });
+  });
+}
+
+// CRUD: listing of lead details
+exports.show_lead = function (req, res, next) {
+  // fetch lead with a given ID from DB
+  return models.Lead.findOne({
+    where: {
+      id: req.params.lead_id
+    }
+  }).then(lead => {
+    res.render('lead', {
+      lead: lead
     });
   });
 }

@@ -7,8 +7,13 @@ block content
   form(action="/", method="POST")
     input(type="email", name="lead_email", placeholder="Enter your email address")
     button(type="submit") Submit
+    //- listing of leads (view)
   if leads
     h2 Leads
     //- note: leads is an array of objects
     for lead in leads
-      p #{lead.email}
+      p 
+        span #{lead.email}
+        |
+        |
+        a(href="/lead/" + lead.id) Details
