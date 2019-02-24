@@ -26,4 +26,7 @@ router.post('/lead/:lead_id/edit', landing.edit_lead);
 // CRUD: deleting individual lead route
 router.post('/lead/:lead_id/delete', landing.delete_lead);
 
+// TODO 16: Implement deleting lead using client side javascript
+router.post('/lead/:lead_id/delete-json', landing.delete_lead_json);
+
 module.exports = router;

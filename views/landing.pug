@@ -12,8 +12,17 @@ block content
     h2 Leads
     //- note: leads is an array of objects
     for lead in leads
-      p
+      p(id=lead.id)
         span #{lead.email}
         |
         |
         a(href="/lead/" + lead.id) Details
+        |
+        |
+        //- Button to invoke the AJAX request for deleting a lead
+        button(onclick=`deleteLead('${lead.id}')`) Delete
+  //- Scripts
+  script(src="https://code.jquery.com/jquery-3.2.1.min.js")
+  script(src="/javascripts/leads.js")
+  
+  
