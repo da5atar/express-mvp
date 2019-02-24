@@ -1,28 +1,33 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
-  //-- TODO 4: landing page form
-  form(action="/", method="POST")
-    input(type="email", name="lead_email", placeholder="Enter your email address")
-    button(type="submit") Submit
-    //- listing of leads (view)
-  if leads
-    h2 Leads
-    //- note: leads is an array of objects
-    for lead in leads
-      p(id=lead.id)
-        span #{lead.email}
-        |
-        |
-        a(href="/lead/" + lead.id) Details
-        |
-        |
-        //- Button to invoke the AJAX request for deleting a lead
-        button(onclick=`deleteLead('${lead.id}')`) Delete
-  //- Scripts
-  script(src="https://code.jquery.com/jquery-3.2.1.min.js")
-  script(src="/javascripts/leads.js")
-  
+doctype html
+html(lang='en')
+  include common/header.pug
+  //- invoke header mixin
+  +header("Starter MVP")
+  body
+    h1= title
+    p Welcome to #{title}
+    //-- TODO 4: landing page form
+    form(action="/", method="POST")
+      input(type="email", name="lead_email", placeholder="Enter your email address")
+      |
+      |
+      button(type="submit") Submit
+      //- listing of leads (view)
+    if leads
+      h2 Leads
+      //- note: leads is an array of objects
+      for lead in leads
+        p(id=lead.id)
+          span #{lead.email}
+          |
+          |
+          a(href="/lead/" + lead.id) Details
+          |
+          |
+          //- Button to invoke the AJAX request for deleting a lead
+          button(onclick=`deleteLead('${lead.id}')`) Delete
+    include common/footer.pug
+    +footer()
+    //- Scripts
+    script(src="/javascripts/leads.js")
   
