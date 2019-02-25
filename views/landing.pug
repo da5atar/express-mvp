@@ -4,38 +4,46 @@ html(lang='en')
   //- invoke header mixin
   +header("Starter MVP")
   body
-    //- navbar
-    nav.navbar.navbar-expand.navbar-light.bg-light
-      a(href="/", aria-label="Golden Goose").navbar-brand.mr-0.mr-md-2
-        img(src="/images/golden-goose.svg", width="72", height="72")
-      div.collapse.navbar-collapse
-        ul.navbar-nav.mr-auto
-          li.nav-item
-            a.nav-link(href="/") Home
-          li.nav-item
-            a.nav-link(href="/") Leads
-    h1= title
-    p Welcome to #{title}
-    //-- TODO 4: landing page form
-    form(action="/", method="POST")
-      input(type="email", name="lead_email", placeholder="Enter your email address")
-      |
-      |
-      button(type="submit") Submit
-      //- listing of leads (view)
-    if leads
-      h2 Leads
-      //- note: leads is an array of objects
-      for lead in leads
-        p(id=lead.id)
-          span #{lead.email}
-          |
-          |
-          a(href="/lead/" + lead.id) Details
-          |
-          |
-          //- Button to invoke the AJAX request for deleting a lead
-          button(onclick=`deleteLead('${lead.id}')`) Delete
+    header
+      //- navbar
+      include common/navbar.pug
+      +navbar()
+      .container
+        .row.align-items-center
+          .col-md-6.order-md-1.text-center.text-md-left.pr-md-5
+            //- h1= title
+            //- p Welcome to #{title}
+            h1.mb-3 Minimum Viable Product Landing Page
+            p.lead Built using Node.js, Express and PostGreSQL
+            p.lead.mb-4 Landing page to collect sales lead
+            //-- TODO 4: landing page form
+            form(action="/", method="POST")
+              .input-group.mb-3
+                input(type="email", name="lead_email" placeholder="Enter your Email address").form-control
+                .input-group-append
+                  button(type="submit").btn.btn-primary Get Started
+        //- listing of leads (view)
+        .row
+          .column-md-6
+            if leads
+              h2 Leads
+              //- note: leads is an array of objects
+              table.table
+                thead
+                  tr
+                    th(scope="col") Email
+                    th(scope="col") Actions
+                    th(scope="col")
+                tbody
+                  for lead in leads
+                    tr(id=lead.id)
+                      td
+                        span #{lead.email}
+                      td
+                        a(href="/lead/" + lead.id) Details
+                      td 
+                        //- Button to invoke the AJAX request for deleting a lead
+                        button(onclick=`deleteLead('${lead.id}')`).btn.btn-primary Delete
     include common/footer.pug
     +footer()
     //- Scripts

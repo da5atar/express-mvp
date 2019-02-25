@@ -1,6 +1,15 @@
-extends ../layout
-
-block content
-  form(action="/lead/" + lead.id + "/edit", method="POST")
-    input(type="email", name="lead_email", placeholder="Enter your Email address", value=lead.email)
-    button(type="submit") Save
+doctype html
+html(lang='en')
+  include ../common/header.pug
+  //- invoke header mixin
+  +header("Starter MVP")
+  body
+    //- navbar
+    include ../common/navbar.pug
+    +navbar()
+    h1 Edit Lead
+    form(action="/lead/" + lead.id + "/edit", method="POST")
+      input(type="email", name="lead_email", placeholder="Enter your Email address", value=lead.email)
+      button(type="submit").btn.btn-primary Save
+    include ../common/footer.pug
+    +footer()
