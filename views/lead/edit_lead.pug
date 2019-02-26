@@ -2,14 +2,19 @@ doctype html
 html(lang='en')
   include ../common/header.pug
   //- invoke header mixin
-  +header("Starter MVP")
+  +header("Edit Lead")
   body
-    //- navbar
-    include ../common/navbar.pug
-    +navbar()
-    h1 Edit Lead
-    form(action="/lead/" + lead.id + "/edit", method="POST")
-      input(type="email", name="lead_email", placeholder="Enter your Email address", value=lead.email)
-      button(type="submit").btn.btn-primary Save
+    header
+      //- navbar
+      include ../common/navbar.pug
+      +navbar()
+      .container
+        .row.align-items-center
+          .col-md-6.order-md-1.text-center.text-md-left.pr-md-5
+            h1 Edit Lead
+            form(action="/lead/" + lead.id + "/edit", method="POST").input-group.mb-3
+              input(type="email", name="lead_email", placeholder="Enter your Email address", value=lead.email).form-control
+              .input-group-append
+                button(type="submit").btn.btn-primary Save
     include ../common/footer.pug
     +footer()

@@ -1,0 +1,34 @@
+doctype html
+html(lang='en')
+  include ../common/header.pug
+  //- invoke header mixin
+  +header("Leads")
+  body
+    header
+      //- navbar
+      include ../common/navbar.pug
+      +navbar()
+      .container
+        .row.align-items-center
+          .col-md-6.order-md-1.text-center.text-md-left.pr-md-5
+            //- listing of leads (view)
+            h2 Leads
+            //- note: leads is an array of objects
+            table.table
+              thead
+                tr
+                  th(scope="col") Email
+                  th(scope="col") Actions
+                  th(scope="col")
+              tbody
+                for lead in leads
+                  tr(id=lead.id)
+                    td
+                      span #{lead.email}
+                    td
+                      a(href="/lead/" + lead.id) Details
+                    td 
+                      //- Button to invoke the AJAX request for deleting a lead
+                      button(onclick=`deleteLead('${lead.id}')`).btn.btn-primary Delete
+    include ../common/footer.pug
+    +footer()

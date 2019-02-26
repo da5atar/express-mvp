@@ -22,7 +22,7 @@ exports.submit_lead = function (req, res, next) {
 exports.show_leads = function (req, res, next) {
   // fetch leads from DB
   return models.Lead.findAll().then(leads => {
-    res.render('landing', {
+    res.render('lead/leads', {
       title: 'Express',
       leads: leads // returned leads object from promise
     });
@@ -37,7 +37,7 @@ exports.show_lead = function (req, res, next) {
       id: req.params.lead_id
     }
   }).then(lead => {
-    res.render('lead', {
+    res.render('lead/lead', {
       lead: lead
     });
   });
